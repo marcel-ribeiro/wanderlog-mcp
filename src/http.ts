@@ -105,7 +105,7 @@ async function main() {
   // the transport itself decides what's allowed per the spec.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleMcp = async (req: any, res: any) => {
-    const cookie = extractCookie(req);
+    const cookie = extractCookie(req) ?? process.env.WANDERLOG_COOKIE ?? null;
     if (!cookie) {
       res.status(401).json({
         jsonrpc: "2.0",
